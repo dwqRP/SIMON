@@ -1,0 +1,97 @@
+Start search delta in with hamming weight 1
+Start search delta in with hamming weight 2
+Processed: 5%    Time: 3.46s
+Processed: 10%    Time: 3.62s
+Processed: 15%    Time: 3.65s
+Processed: 20%    Time: 3.75s
+Processed: 55%    Time: 3.79s
+Processed: 65%    Time: 3.80s
+Processed: 80%    Time: 3.84s
+Processed: 95%    Time: 4.06s
+Start search delta in with hamming weight 3
+Processed: 5%    Time: 4.14s
+Processed: 10%    Time: 4.20s
+Processed: 15%    Time: 4.67s
+Processed: 20%    Time: 35.40s
+Processed: 25%    Time: 35.40s
+Processed: 30%    Time: 35.88s
+Processed: 35%    Time: 35.89s
+Processed: 40%    Time: 35.89s
+Processed: 45%    Time: 35.97s
+Processed: 50%    Time: 35.97s
+Processed: 55%    Time: 35.97s
+Processed: 60%    Time: 47.08s
+Processed: 65%    Time: 47.08s
+Processed: 70%    Time: 47.09s
+Processed: 75%    Time: 47.09s
+Processed: 80%    Time: 47.10s
+Processed: 85%    Time: 47.10s
+Processed: 90%    Time: 47.66s
+Processed: 95%    Time: 47.99s
+Start search delta in with hamming weight 4
+Processed: 5%    Time: 48.04s
+Processed: 10%    Time: 115.30s
+------------------------
+Delta in: ( 40 , 111 )
+Delta out: ( 40 , 11 )
+p=2^{-50} wt=7
+------------------------
+Processed: 15%    Time: 153.67s
+Processed: 20%    Time: 159.23s
+Processed: 25%    Time: 159.25s
+Processed: 30%    Time: 159.29s
+Processed: 35%    Time: 159.58s
+Processed: 40%    Time: 159.59s
+Processed: 45%    Time: 159.60s
+Processed: 50%    Time: 202.11s
+Processed: 55%    Time: 214.06s
+Processed: 60%    Time: 214.10s
+Processed: 65%    Time: 214.12s
+Processed: 70%    Time: 214.12s
+Processed: 75%    Time: 229.45s
+Processed: 80%    Time: 229.48s
+Processed: 85%    Time: 230.36s
+Processed: 90%    Time: 230.67s
+Processed: 95%    Time: 231.49s
+Start search delta in with hamming weight 5
+Processed: 5%    Time: 285.48s
+Processed: 10%    Time: 364.53s
+Processed: 15%    Time: 384.32s
+Processed: 20%    Time: 384.42s
+Processed: 25%    Time: 386.27s
+Processed: 30%    Time: 386.30s
+Processed: 35%    Time: 386.34s
+Processed: 40%    Time: 458.54s
+Processed: 45%    Time: 504.11s
+Processed: 50%    Time: 508.70s
+Processed: 55%    Time: 508.74s
+Processed: 60%    Time: 508.78s
+Processed: 65%    Time: 509.51s
+Processed: 70%    Time: 544.88s
+Processed: 75%    Time: 544.93s
+Processed: 80%    Time: 544.94s
+Processed: 85%    Time: 545.70s
+Processed: 90%    Time: 545.97s
+Processed: 95%    Time: 546.39s
+Start search delta in with hamming weight 6
+Processed: 5%    Time: 613.68s
+Processed: 10%    Time: 642.47s
+Processed: 15%    Time: 642.68s
+Processed: 20%    Time: 645.67s
+Processed: 25%    Time: 645.81s
+Processed: 30%    Time: 645.98s
+Processed: 35%    Time: 738.07s
+Processed: 40%    Time: 752.45s
+Processed: 45%    Time: 766.22s
+Processed: 50%    Time: 766.35s
+Processed: 55%    Time: 766.84s
+Processed: 60%    Time: 767.91s
+Processed: 65%    Time: 821.62s
+Processed: 70%    Time: 821.96s
+Processed: 75%    Time: 822.09s
+Processed: 80%    Time: 823.36s
+Processed: 85%    Time: 823.75s
+Processed: 90%    Time: 824.54s
+Processed: 95%    Time: 824.90s
+Start search delta in with hamming weight 7
+Stop at ( 0 , 7f )

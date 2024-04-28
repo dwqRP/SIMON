@@ -1,0 +1,169 @@
+Characteristic for simon - Rounds 16 - Wordsize 24 - Weight 50 - Time: 763.31s
+Hamming weight of delta in plus delta out: 7
+Rounds  x         y         w         
+-------------------------------------
+0       0x000220  0x000800  -4        
+1       0x000080  0x000220  -2        
+2       0x000020  0x000080  -2        
+3       0x000000  0x000020  -0        
+4       0x000020  0x000000  -2        
+5       0x002080  0x000020  -4        
+6       0x200220  0x002080  -6        
+7       0x820820  0x200220  -8        
+8       0x200220  0x820820  -6        
+9       0x002080  0x200220  -4        
+10      0x000020  0x002080  -2        
+11      0x000000  0x000020  -0        
+12      0x000020  0x000000  -2        
+13      0x000080  0x000020  -2        
+14      0x000220  0x000080  -4        
+15      0x000800  0x000220  -2        
+16      0x002220  0x000800  none      
+
+
+
+Characteristic for simon - Rounds 15 - Wordsize 24 - Weight 48
+Hamming weight of delta in plus delta out: 6
+Rounds  x         y         w         
+-------------------------------------
+0       0x000220  0x000800  -4        
+1       0x000080  0x000220  -2        
+2       0x000020  0x000080  -2        
+3       0x000000  0x000020  -0        
+4       0x000020  0x000000  -2        
+5       0x002080  0x000020  -4        
+6       0x200220  0x002080  -6        
+7       0x820820  0x200220  -8        
+8       0x200220  0x820820  -6        
+9       0x002080  0x200220  -4        
+10      0x000020  0x002080  -2        
+11      0x000000  0x000020  -0        
+12      0x000020  0x000000  -2        
+13      0x000080  0x000020  -2        
+14      0x000220  0x000080  -4        
+15      0x000800  0x000220  none
+
+Finding all trails of weight 48
+        Solutions: 1
+        Trails found: 1
+        Current Probability: -48.0
+        Time: 8.43s
+Finding all trails of weight 49
+        Solutions: 6
+        Trails found: 7
+        Current Probability: -46.0
+        Time: 16.82s
+Finding all trails of weight 50
+        Solutions: 15
+        Trails found: 22
+        Current Probability: -45.04580368961313
+        Time: 27.6s
+Finding all trails of weight 51
+        Solutions: 46
+        Trails found: 68
+        Current Probability: -44.24511249783653
+        Time: 39.29s
+Finding all trails of weight 52
+        Solutions: 100
+        Trails found: 168
+        Current Probability: -43.696219251822896
+        Time: 53.44s
+Finding all trails of weight 53
+        Solutions: 208
+        Trails found: 376
+        Current Probability: -43.28575448233388
+        Time: 70.2s
+Finding all trails of weight 54
+        Solutions: 379
+        Trails found: 755
+        Current Probability: -42.99227188536775
+        Time: 86.39s
+Finding all trails of weight 55
+        Solutions: 685
+        Trails found: 1440
+        Current Probability: -42.77027990676259
+        Time: 109.03s
+Finding all trails of weight 56
+        Solutions: 1067
+        Trails found: 2507
+        Current Probability: -42.618321870081104
+        Time: 139.43s
+Finding all trails of weight 57
+        Solutions: 1607
+        Trails found: 4114
+        Current Probability: -42.513604891549335
+        Time: 175.91s
+Finding all trails of weight 58
+        Solutions: 2255
+        Trails found: 6369
+        Current Probability: -42.44442227237156
+        Time: 223.87s
+Finding all trails of weight 59
+        Solutions: 2839
+        Trails found: 9208
+        Current Probability: -42.402514799935894
+        Time: 315.34s
+Finding all trails of weight 60
+        Solutions: 3476
+        Trails found: 12684
+        Current Probability: -42.37744764945579
+        Time: 484.24s
+Finding all trails of weight 61
+        Solutions: 4088
+        Trails found: 16772
+        Current Probability: -42.362908187754655
+        Time: 840.52s
+Finding all trails of weight 62
+        Solutions: 5032
+        Trails found: 21804
+        Current Probability: -42.354032033745426
+        Time: 959.75s
+Finding all trails of weight 63
+        Solutions: 7063
+        Trails found: 28867
+        Current Probability: -42.34783512591953
+        Time: 1111.66s
+Finding all trails of weight 64
+        Solutions: 11475
+        Trails found: 40342
+        Current Probability: -42.34282070057135
+        Time: 1376.04s
+Finding all trails of weight 65
+        Solutions: 20872
+        Trails found: 61214
+        Current Probability: -42.33827538854995
+        Time: 1960.64s
+Finding all trails of weight 66
+        Solutions: 38752
+        Trails found: 99966
+        Current Probability: -42.334068640803544
+        Time: 2978.22s
+
+
+
+All tests passed
+delta = 0x220000800
+kin :
+count = 37
+Round 0 : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+Round 1 : [2, 3, 5, 6, 10, 12, 16, 17, 19, 20, 22]
+Round 2 : [4, 18]
+Round 3 : []
+delta = 0x800000220
+kout :
+count = 37
+Round 19 : []
+Round 20 : [4, 18]
+Round 21 : [2, 3, 5, 6, 10, 12, 16, 17, 19, 20, 22]
+Round 22 : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+rank of kin: 37 / 37
+rank of kout: 37 / 37
+rank of kin cup kout: 74 / 74
+size of kin cap kout: 0
+size of kres: 22
+kres: [76, 75, 74, 73, 72, 54, 53, 51, 50, 49, 48, 47, 39, 38, 37, 35, 33, 32, 31, 28, 25, 24]
+when add kex :
+rank of kin cup kout: 96 / 96
+size of kin cap kout: 2
+size of kres: 0
+kres: []

@@ -1,0 +1,108 @@
+Characteristic for simon - Rounds 22 - Wordsize 32 - Weight 72 - Time: 389.84s
+Hamming weight of delta in plus delta out: 7
+Rounds  x           y           w           
+-------------------------------------------
+0       0x00044000  0x00100000  -4          
+1       0x00010000  0x00044000  -2          
+2       0x00004000  0x00010000  -2          
+3       0x00000000  0x00004000  -0          
+4       0x00004000  0x00000000  -2          
+5       0x00010000  0x00004000  -2          
+6       0x00044000  0x00010000  -4          
+7       0x00100000  0x00044000  -2          
+8       0x00444000  0x00100000  -6          
+9       0x01010000  0x00444000  -4          
+10      0x04404000  0x01010000  -6          
+11      0x10C00000  0x04404000  -6          
+12      0x06404000  0x10C00000  -8          
+13      0x01010000  0x06404000  -4          
+14      0x00444000  0x01010000  -6          
+15      0x00100000  0x00444000  -2          
+16      0x00044000  0x00100000  -4          
+17      0x00010000  0x00044000  -2          
+18      0x00004000  0x00010000  -2          
+19      0x00000000  0x00004000  -0          
+20      0x00004000  0x00000000  -2          
+21      0x00010000  0x00004000  -2          
+22      0x00064000  0x00010000  none   
+
+重新构造一下：最后一轮明显可以3活跃比特。
+Characteristic for simon - Rounds 22 - Wordsize 32 - Weight 72 - Time: 389.84s
+Hamming weight of delta in plus delta out: 7
+Rounds  x           y           w           
+-------------------------------------------
+0       0x00044000  0x00100000  -4          
+1       0x00010000  0x00044000  -2          
+2       0x00004000  0x00010000  -2          
+3       0x00000000  0x00004000  -0          
+4       0x00004000  0x00000000  -2          
+5       0x00010000  0x00004000  -2          
+6       0x00044000  0x00010000  -4          
+7       0x00100000  0x00044000  -2          
+8       0x00444000  0x00100000  -6          
+9       0x01010000  0x00444000  -4          
+10      0x04404000  0x01010000  -6          
+11      0x10C00000  0x04404000  -6          
+12      0x06404000  0x10C00000  -8          
+13      0x01010000  0x06404000  -4          
+14      0x00444000  0x01010000  -6          
+15      0x00100000  0x00444000  -2          
+16      0x00044000  0x00100000  -4          
+17      0x00010000  0x00044000  -2          
+18      0x00004000  0x00010000  -2          
+19      0x00000000  0x00004000  -0          
+20      0x00004000  0x00000000  -2          
+21      0x00010000  0x00004000  -2          
+22      0x00044000  0x00010000  none        
+
+
+Finding all trails of weight 72
+        Solutions: 2
+        Trails found: 2
+        Current Probability: -71.0
+        Time: 53.92s
+Finding all trails of weight 73
+        Solutions: 14
+        Trails found: 16
+        Current Probability: -68.83007499855769
+        Time: 91.61s
+Finding all trails of weight 74
+        Solutions: 74
+        Trails found: 90
+        Current Probability: -67.21864028647535
+        Time: 138.21s
+Finding all trails of weight 75
+        Solutions: 306
+        Trails found: 396
+        Current Probability: -65.9610810107077
+        Time: 209.92s
+Finding all trails of weight 76
+        Solutions: 1105
+        Trails found: 1501
+        Current Probability: -64.92518953883955
+        Time: 288.92s
+Finding all trails of weight 77
+        Solutions: 3502
+        Trails found: 5003
+        Current Probability: -64.06778524803161
+        Time: 438.41s
+Finding all trails of weight 78
+        Solutions: 10279
+        Trails found: 15282
+        Current Probability: -63.33872292499425
+        Time: 878.02s
+Finding all trails of weight 79
+        Solutions: 27773
+        Trails found: 43055
+        Current Probability: -62.719609814075696
+        Time: 1579.52s
+Finding all trails of weight 80
+        Solutions: 71337
+        Trails found: 114392
+        Current Probability: -62.18542379232774
+        Time: 3580.12s
+Finding all trails of weight 81
+        Solutions: 173431
+        Trails found: 287823
+        Current Probability: -61.72477346816571
+        Time: 9446.32s

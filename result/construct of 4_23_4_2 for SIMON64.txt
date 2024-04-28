@@ -1,0 +1,64 @@
+重新构造一下：多加一轮。
+Characteristic for simon - Rounds 23 - Wordsize 32 - Weight 76
+Hamming weight of delta in plus delta out: 6
+Rounds  x           y           w           
+-------------------------------------------
+0       0x00044000  0x00100000  -4          
+1       0x00010000  0x00044000  -2          
+2       0x00004000  0x00010000  -2          
+3       0x00000000  0x00004000  -0          
+4       0x00004000  0x00000000  -2          
+5       0x00010000  0x00004000  -2          
+6       0x00044000  0x00010000  -4          
+7       0x00100000  0x00044000  -2          
+8       0x00444000  0x00100000  -6          
+9       0x01010000  0x00444000  -4          
+10      0x04404000  0x01010000  -6          
+11      0x10C00000  0x04404000  -6          
+12      0x06404000  0x10C00000  -8          
+13      0x01010000  0x06404000  -4          
+14      0x00444000  0x01010000  -6          
+15      0x00100000  0x00444000  -2          
+16      0x00044000  0x00100000  -4          
+17      0x00010000  0x00044000  -2          
+18      0x00004000  0x00010000  -2          
+19      0x00000000  0x00004000  -0          
+20      0x00004000  0x00000000  -2          
+21      0x00010000  0x00004000  -2          
+22      0x00044000  0x00010000  -4
+23      0x00100000  0x00044000  none        
+
+
+
+Finding all trails of weight 76
+        Solutions: 2
+        Trails found: 2
+        Current Probability: -75.0
+        Time: 77.53s
+Finding all trails of weight 77
+        Solutions: 14
+        Trails found: 16
+        Current Probability: -72.83007499855769
+        Time: 151.23s
+Finding all trails of weight 78
+        Solutions: 78
+        Trails found: 94
+        Current Probability: -71.16710998583527
+        Time: 237.15s
+Finding all trails of weight 79
+        Solutions: 336
+        Trails found: 430
+        Current Probability: -69.8604486476012
+        Time: 325.87s
+Finding all trails of weight 80
+        Solutions: 1267
+        Trails found: 1697
+        Current Probability: -68.77419005937647
+        Time: 481.53s
+Finding all trails of weight 81
+        Solutions: 4188
+        Trails found: 5885
+        Current Probability: -67.86782161908447
+        Time: 672.39s
+Finding all trails of weight 82
+        Solutions: 4100

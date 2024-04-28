@@ -1,0 +1,192 @@
+Start search delta in with hamming weight 1
+Start search delta in with hamming weight 2
+Processed: 5%    Time: 0.50s
+Processed: 10%    Time: 0.51s
+Processed: 15%    Time: 0.51s
+Processed: 20%    Time: 0.52s
+Processed: 55%    Time: 0.52s
+Processed: 65%    Time: 0.52s
+Processed: 80%    Time: 0.52s
+Processed: 95%    Time: 0.54s
+Start search delta in with hamming weight 3
+Processed: 5%    Time: 0.55s
+Processed: 10%    Time: 0.55s
+Processed: 15%    Time: 0.58s
+Processed: 20%    Time: 11.30s
+Processed: 25%    Time: 11.30s
+Processed: 30%    Time: 11.34s
+Processed: 35%    Time: 11.34s
+Processed: 40%    Time: 11.34s
+Processed: 45%    Time: 11.34s
+Processed: 50%    Time: 11.34s
+Processed: 55%    Time: 11.34s
+Processed: 60%    Time: 14.47s
+Processed: 65%    Time: 14.47s
+Processed: 70%    Time: 14.47s
+Processed: 75%    Time: 14.47s
+Processed: 80%    Time: 14.47s
+Processed: 85%    Time: 14.47s
+Processed: 90%    Time: 14.51s
+Processed: 95%    Time: 14.53s
+Start search delta in with hamming weight 4
+Processed: 5%    Time: 14.53s
+Processed: 10%    Time: 36.08s
+------------------------
+Delta in: ( 40 , 111 )
+Delta out: ( 111 , 40 )
+p=2^{-52} wt=8
+------------------------
+------------------------
+Delta in: ( 40 , 111 )
+Delta out: ( 191 , 40 )
+p=2^{-52} wt=9
+------------------------
+------------------------
+Delta in: ( 40 , 111 )
+Delta out: ( 4111 , 40 )
+p=2^{-52} wt=9
+------------------------
+------------------------
+Delta in: ( 40 , 111 )
+Delta out: ( 4191 , 40 )
+p=2^{-52} wt=10
+------------------------
+Processed: 15%    Time: 47.45s
+Processed: 20%    Time: 47.53s
+Processed: 25%    Time: 47.53s
+Processed: 30%    Time: 47.53s
+Processed: 35%    Time: 47.55s
+Processed: 40%    Time: 47.55s
+Processed: 45%    Time: 47.55s
+Processed: 50%    Time: 61.47s
+Processed: 55%    Time: 61.47s
+Processed: 60%    Time: 61.47s
+Processed: 65%    Time: 61.48s
+Processed: 70%    Time: 61.48s
+Processed: 75%    Time: 61.50s
+Processed: 80%    Time: 61.50s
+Processed: 85%    Time: 61.53s
+Processed: 90%    Time: 61.53s
+Processed: 95%    Time: 61.56s
+Start search delta in with hamming weight 5
+Processed: 5%    Time: 72.66s
+------------------------
+Delta in: ( 40 , 191 )
+Delta out: ( 111 , 40 )
+p=2^{-52} wt=9
+------------------------
+------------------------
+Delta in: ( 40 , 191 )
+Delta out: ( 191 , 40 )
+p=2^{-52} wt=10
+------------------------
+------------------------
+Delta in: ( 40 , 191 )
+Delta out: ( 4111 , 40 )
+p=2^{-52} wt=10
+------------------------
+------------------------
+Delta in: ( 40 , 191 )
+Delta out: ( 4191 , 40 )
+p=2^{-52} wt=11
+------------------------
+------------------------
+Delta in: ( 40 , 4111 )
+Delta out: ( 111 , 40 )
+p=2^{-52} wt=9
+------------------------
+------------------------
+Delta in: ( 40 , 4111 )
+Delta out: ( 191 , 40 )
+p=2^{-52} wt=10
+------------------------
+------------------------
+Delta in: ( 40 , 4111 )
+Delta out: ( 4111 , 40 )
+p=2^{-52} wt=10
+------------------------
+------------------------
+Delta in: ( 40 , 4111 )
+Delta out: ( 4191 , 40 )
+p=2^{-52} wt=11
+------------------------
+Processed: 10%    Time: 95.59s
+Processed: 15%    Time: 95.63s
+Processed: 20%    Time: 95.64s
+Processed: 25%    Time: 95.67s
+Processed: 30%    Time: 95.68s
+Processed: 35%    Time: 95.68s
+Processed: 40%    Time: 117.97s
+Processed: 45%    Time: 117.97s
+Processed: 50%    Time: 117.97s
+Processed: 55%    Time: 117.98s
+Processed: 60%    Time: 117.98s
+Processed: 65%    Time: 118.04s
+Processed: 70%    Time: 118.04s
+Processed: 75%    Time: 118.04s
+Processed: 80%    Time: 118.05s
+Processed: 85%    Time: 118.05s
+Processed: 90%    Time: 118.07s
+Processed: 95%    Time: 118.07s
+Start search delta in with hamming weight 6
+------------------------
+Delta in: ( 40 , 4191 )
+Delta out: ( 111 , 40 )
+p=2^{-52} wt=10
+------------------------
+------------------------
+Delta in: ( 40 , 4191 )
+Delta out: ( 191 , 40 )
+p=2^{-52} wt=11
+------------------------
+------------------------
+Delta in: ( 40 , 4191 )
+Delta out: ( 4111 , 40 )
+p=2^{-52} wt=11
+------------------------
+------------------------
+Delta in: ( 40 , 4191 )
+Delta out: ( 4191 , 40 )
+p=2^{-52} wt=12
+------------------------
+Processed: 5%    Time: 129.70s
+Processed: 10%    Time: 129.74s
+Processed: 15%    Time: 129.77s
+Processed: 20%    Time: 129.81s
+Processed: 25%    Time: 129.83s
+Processed: 30%    Time: 129.85s
+Processed: 35%    Time: 141.36s
+Processed: 40%    Time: 141.38s
+Processed: 45%    Time: 141.40s
+Processed: 50%    Time: 141.42s
+Processed: 55%    Time: 141.43s
+Processed: 60%    Time: 141.48s
+Processed: 65%    Time: 141.49s
+Processed: 70%    Time: 141.51s
+Processed: 75%    Time: 141.52s
+Processed: 80%    Time: 141.54s
+Processed: 85%    Time: 141.55s
+Processed: 90%    Time: 141.57s
+Processed: 95%    Time: 141.59s
+Start search delta in with hamming weight 7
+Processed: 5%    Time: 141.96s
+Processed: 10%    Time: 142.16s
+Processed: 15%    Time: 142.31s
+Processed: 20%    Time: 142.42s
+Processed: 25%    Time: 142.54s
+Processed: 30%    Time: 142.65s
+Processed: 35%    Time: 142.76s
+Processed: 40%    Time: 142.87s
+Processed: 45%    Time: 142.98s
+Processed: 50%    Time: 143.06s
+Processed: 55%    Time: 143.17s
+Processed: 60%    Time: 143.24s
+Processed: 65%    Time: 143.35s
+Processed: 70%    Time: 143.43s
+Processed: 75%    Time: 143.54s
+Processed: 80%    Time: 143.61s
+Processed: 85%    Time: 143.68s
+Processed: 90%    Time: 143.80s
+Processed: 95%    Time: 143.87s
+Start search delta in with hamming weight 8
+Stop at ( 0 , ff )
