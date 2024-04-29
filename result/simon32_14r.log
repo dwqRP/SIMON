@@ -3,6 +3,9 @@ Start search delta in with hamming weight 1
 Delta in: ( 0 , 1 )
 Delta out: ( 400 , 100 )
 p=2^{-38} wt=3
+
+---》Lower Part: add 1000000 trails    Time:  5209.29s
+total p=30.790743
 ------------------------
 ------------------------
 Delta in: ( 0 , 1 )
