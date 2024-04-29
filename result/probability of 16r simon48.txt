@@ -1,3 +1,10 @@
+------------------------
+Delta in: ( 11 , 40 )
+Delta out: ( 111 , 40 )
+p=2^{-50} wt=7
+------------------------
+
+
 Finding all trails of weight 50
         Solutions: 1
         Trails found: 1
