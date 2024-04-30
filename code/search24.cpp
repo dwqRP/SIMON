@@ -2,7 +2,7 @@
 #define simon24 unsigned int
 #define simon48 unsigned long long
 using namespace std;
-int n = 24, R = 15;
+int n = 24, R = 17;
 int minw = 96, win, wout;
 simon24 lin, rin;
 simon48 mx;
@@ -76,10 +76,6 @@ void dfs(simon24 l, simon24 r, int round, int p)
                 cnt--;
             }
         }
-        else
-        {
-            vec[i] = -1;
-        }
     }
     if (p + cnt + B[R - round] > B[R])
         return;
@@ -147,7 +143,7 @@ int main()
             break;
         }
         int rate = 100 * js / total;
-        if (rate && rate % 5 == 0 && rate > pr)
+        if (rate >= pr + 5)
         {
             pr = rate;
             end = clock();

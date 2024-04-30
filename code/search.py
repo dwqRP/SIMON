@@ -51,7 +51,7 @@ def lshift(x, pos):
 
 
 def dfs(l, r, round, p):
-    print(l, r, round, p)
+    # print(l, r, round, p)
     if round > R:
         wout = wt(l) + wt(r)
         global win, lin, rin, minw
@@ -125,7 +125,7 @@ if __name__ == "__main__":
             print("Stop at ( %x , %x )" % (l, r))
             break
         rate = 100 * js // total
-        if rate and rate % 5 == 0 and rate > pr:
+        if rate >= pr + 5:
             pr = rate
             print(
                 "Processed: {}%    Time: {}s".format(

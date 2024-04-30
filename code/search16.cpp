@@ -136,7 +136,7 @@ int main()
             break;
         }
         int rate = 100 * js / total;
-        if (rate && rate % 5 == 0 && rate > pr)
+        if (rate >= pr + 5)
         {
             pr = rate;
             end = clock();
