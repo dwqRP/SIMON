@@ -115,7 +115,7 @@ int main()
         mx |= (1ULL << i);
     // printf("%llx\n", mxv);
     int tmpw = 0, total = 0, pr = 0;
-    for (simon32 i = 1, js = 0; i <= mx; i = next(i))
+    for (simon32 i = 1, js = 0; i < mx; i = next(i))
     {
         js++;
         simon16 l = i >> n, r = i % (1 << n);

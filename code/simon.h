@@ -1,11 +1,12 @@
 #ifndef __SIMON__
 #define __SIMON__
 
-#include <bits/stdc++.h>
+#include <bitset>
+#include <cstdio>
 #define simon(x) bitset<x>
-typedef unsigned char uc;
+// typedef unsigned char uc;
 
-extern uc N;
+extern const char N;
 
 template <class T>
 class full_state
@@ -14,32 +15,49 @@ private:
     T s;
 
 public:
+    full_state(char pos = -1)
+    {
+        s = 0;
+        if (pos >= 0)
+            s[pos] = 1;
+    }
+    inline void print()
+    {
+        for (char i = N - 1; i >= 0; i--)
+            putchar(s[i] ? '1' : '0');
+        puts("");
+        return;
+    }
+    inline bool valid()
+    {
+        return s.count() < N;
+    }
     inline void nxt()
     {
-        uc num = s.count();
+        char num = s.count();
         bool check = 1;
-        for (uc i = N - num; i < N; i++)
+        for (char i = N - num; i < N; i++)
             check &= s[i];
         if (check)
         {
             s = 0;
-            for (uc i = 0; i <= num; i++)
+            for (char i = 0; i <= num; i++)
                 s[i] = 1;
         }
         else
         {
-            uc ctz = 0;
-            for (uc i = 0; i < N - 1; i++)
+            char ctz = 0;
+            for (char i = 0; i < N - 1; i++)
             {
                 if (!s[i])
                     ctz++;
                 if (s[i] == 1 && s[i + 1] == 0)
                 {
                     s[i] = 0, s[i + 1] = 1;
-                    for (uc j = 0; j < i; j++)
-                        s[i] = (j < (i - ctz));
+                    for (char j = 0; j < i; j++)
+                        s[j] = (j < (i - ctz));
+                    break;
                 }
-                break;
             }
         }
         return;
