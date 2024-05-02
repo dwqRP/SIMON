@@ -1,16 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define simon16 unsigned short
-#define simon32 unsigned int
 int n = 16, R = 14, midR = 7;
-int threshold = 7;
-// int minp = 600, maxp = 0;
+int threshold = 6;
 simon16 lin = 0x0000;
 simon16 rin = 0x0001;
 simon16 lout = 0x0400;
 simon16 rout = 0x0100;
 double prob = 0;
 bool flag = 0;
+clock_t start, ed;
 struct state
 {
     simon16 x, y;
@@ -23,7 +22,7 @@ struct state
 };
 map<state, double> mp;
 map<state, double>::iterator iter;
-// int num[700];
+int num = 0;
 
 inline bool bit(simon16 x, int pos) { return (x & (1 << pos)) == 0 ? 0 : 1; }
 
@@ -37,18 +36,31 @@ void dfs(simon16 l, simon16 r, int round, int p, bool rev)
     if (rev == 0 && round > midR)
     {
         // add this internal state to hash table
-        // printf("l=%x r=%x round=%d p=2^{-%d}\n", l, r, round, p);
+        num++;
+        if (num == 1000000)
+        {
+            ed = clock();
+            printf("Upper Part: add 1000000 trails    Time:  %.2fs\n", (double)(ed - start) / CLOCKS_PER_SEC);
+            num = 0;
+        }
         state st = (state){l, r};
         iter = mp.find(st);
         if (iter != mp.end())
-            mp[(state){l, r}] = add_prob(iter->second, p);
+            mp[st] = add_prob(iter->second, p);
         else
-            mp[(state){l, r}] = p;
+            mp[st] = p;
         return;
     }
     if (rev && round <= midR)
     {
         // check for matches and calc prob
+        num++;
+        if (num == 1000000)
+        {
+            ed = clock();
+            printf("Lower Part: add 1000000 trails    Time:  %.2fs\n", (double)(ed - start) / CLOCKS_PER_SEC);
+            num = 0;
+        }
         state st = (state){l, r};
         iter = mp.find(st);
         if (iter != mp.end())
@@ -125,6 +137,7 @@ void dfs(simon16 l, simon16 r, int round, int p, bool rev)
 }
 int main()
 {
+    start = clock();
     dfs(lin, rin, 1, 0, 0);
     dfs(lout, rout, R, 0, 1);
     printf("%f\n", prob);

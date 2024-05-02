@@ -1,7 +1,6 @@
 import random
 
 
-
 CONFIG = {
     (32, 64): (32, 0),
     (48, 72): (36, 0),
@@ -17,10 +16,12 @@ CONFIG = {
 
 
 def get_random_hex(len):
-    num = random.randrange(0, 16 ** len)
+    num = random.randrange(0, 16**len)
     hex_str = hex(num)[2:]
     hex_str = hex_str.zfill(len)
     return hex_str
+
+
 # int(hex_str, 16)
 
 
@@ -50,6 +51,7 @@ class SIMON:
     one of the two lightweight block ciphers designed by NSA
     this one is optimized for hardware implementation
     """
+
     def __init__(self, block_size, key_size, master_key=None):
         assert (block_size, key_size) in CONFIG
         self.block_size = block_size
@@ -124,38 +126,38 @@ def test_linear_key(test_str, r, bsize, ksize, delta, br):
             for tries in range(1000):
                 z = int(get_random_hex(bsize >> 4), 16)
                 k = int(get_random_hex(ksize >> 4), 16)
-                
+
                 my_simon1 = SIMON(bsize, ksize, k)
                 my_simon1.begin_round = br
                 my_simon1.end_round = er
                 # print(my_simon1.round_key)
-                
+
                 my_simon2 = SIMON(bsize, ksize, k)
                 my_simon2.begin_round = br
                 my_simon2.end_round = er
-                my_simon2.round_key[i] ^= (1 << j)
+                my_simon2.round_key[i] ^= 1 << j
                 # print(my_simon2.round_key)
-                
-                if test_str == 'input':
+
+                if test_str == "input":
                     y1 = my_simon1.encrypt(z)
                     y1 ^= delta
                     x1 = my_simon1.decrypt(y1)
                     y2 = my_simon2.encrypt(z)
                     y2 ^= delta
                     x2 = my_simon2.decrypt(y2)
-                elif test_str == 'output':
+                elif test_str == "output":
                     y1 = my_simon1.decrypt(z)
                     y1 ^= delta
                     x1 = my_simon1.encrypt(y1)
                     y2 = my_simon2.decrypt(z)
                     y2 ^= delta
                     x2 = my_simon2.encrypt(y2)
-                
+
                 if x1 != x2:
                     count += 1
-                    rsk[i-br].append(j)
+                    rsk[i - br].append(j)
                     break
-    
+
     if test_str == "input":
         temp_str = "kin"
     else:
@@ -163,7 +165,7 @@ def test_linear_key(test_str, r, bsize, ksize, delta, br):
     print(temp_str, ":")
     print("count =", count)
     for i in range(br, er):
-        print("Round", i, ":", rsk[i-br])
+        print("Round", i, ":", rsk[i - br])
     return count, rsk
 
 
@@ -175,6 +177,7 @@ def add(ksize, row1, row2):
     for i in range(ksize):
         row3.append(row1[i] ^ row2[i])
     return row3
+
 
 def query(ksize, n, r, pos):
     if (r, pos) in mat:
@@ -195,7 +198,17 @@ def query(ksize, n, r, pos):
         return vec
 
 
-def gauss_elimination(ksize, kin_sz, kout_sz, begin_round_in, end_round_in, begin_round_out, end_round_out, kin, kout):
+def gauss_elimination(
+    ksize,
+    kin_sz,
+    kout_sz,
+    begin_round_in,
+    end_round_in,
+    begin_round_out,
+    end_round_out,
+    kin,
+    kout,
+):
     mtx = []
     mat.clear()
     n = ksize >> 2
@@ -238,7 +251,7 @@ def gauss_elimination(ksize, kin_sz, kout_sz, begin_round_in, end_round_in, begi
                 mtx[j] = add(ksize, mtx[i], mtx[j])
         mpos += 1
         rank += 1
-    
+
     # print(mtx)
     if len(kin) == 0:
         print("rank of kout:", rank, "/", min(sz, ksize))
@@ -249,7 +262,7 @@ def gauss_elimination(ksize, kin_sz, kout_sz, begin_round_in, end_round_in, begi
     # print("main_position:", mpos)
     for row in mtx:
         f.write(str(row) + "\n")
-    
+
     kres = []
     mpos = 0
     for i in range(sz):
@@ -263,14 +276,16 @@ def gauss_elimination(ksize, kin_sz, kout_sz, begin_round_in, end_round_in, begi
         print("size of kin cap kout:", sz - rank)
         print("size of kres:", len(kres))
         print("kres:", kres)
-    
+
 
 def auto_key_guess(rin, rout, rd, bsize, ksize, delta_in, delta_out):
-    kin_sz, kin = test_linear_key('input', rin, bsize, ksize, delta_in, 0)
-    kout_sz, kout = test_linear_key('output', rout, bsize, ksize, delta_out, rd + rin)
+    kin_sz, kin = test_linear_key("input", rin, bsize, ksize, delta_in, 0)
+    kout_sz, kout = test_linear_key("output", rout, bsize, ksize, delta_out, rd + rin)
     gauss_elimination(ksize, kin_sz, 0, 0, rin, 0, 0, kin, [])
     gauss_elimination(ksize, 0, kout_sz, 0, 0, rd + rin, rd + rin + rout, [], kout)
-    gauss_elimination(ksize, kin_sz, kout_sz, 0, rin, rd + rin, rd + rin + rout, kin, kout)
+    gauss_elimination(
+        ksize, kin_sz, kout_sz, 0, rin, rd + rin, rd + rin + rout, kin, kout
+    )
     full_bits = []
     n = bsize >> 1
     for i in range(n):
@@ -278,76 +293,391 @@ def auto_key_guess(rin, rout, rd, bsize, ksize, delta_in, delta_out):
     kex = kout[:]
     kex.append(full_bits)
     print("when add kex1 :")
-    gauss_elimination(ksize, kin_sz, kout_sz + n, 0, rin, rd + rin, rd + rin + rout + 1, kin, kex)
+    gauss_elimination(
+        ksize, kin_sz, kout_sz + n, 0, rin, rd + rin, rd + rin + rout + 1, kin, kex
+    )
     kex.append(full_bits)
     print("when add kex2 :")
-    gauss_elimination(ksize, kin_sz, kout_sz + n + n, 0, rin, rd + rin, rd + rin + rout + 2, kin, kex)
-    
+    gauss_elimination(
+        ksize, kin_sz, kout_sz + n + n, 0, rin, rd + rin, rd + rin + rout + 2, kin, kex
+    )
 
-if __name__ == '__main__':
-    f = open('log.txt','w')
+
+if __name__ == "__main__":
+    f = open("log.txt", "w")
     const_seq = (
-        (1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0,
-         0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1,
-         0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0),
-        (1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0,
-         0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1,
-         1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0),
-        (1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0,
-         1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0,
-         0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1),
-        (1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0,
-         1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0,
-         1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1),
-        (1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0,
-         1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0,
-         1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1),
+        (
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+        ),
+        (
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+        ),
+        (
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+        ),
+        (
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+        ),
+        (
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+        ),
     )
     for i in range(len(const_seq)):
         assert const_seq[i] == get_const_seq(i)
 
     test_vectors = (
         # block_size, key_size, key, plaintext, ciphertext
-        (32, 64,
-            0x1918111009080100,
-            0x65656877,
-            0xc69be9bb),
-        (48, 72,
-            0x1211100a0908020100,
-            0x6120676e696c,
-            0xdae5ac292cac),
-        (48, 96,
-            0x1a19181211100a0908020100,
-            0x72696320646e,
-            0x6e06a5acf156),
-        (64, 96,
-            0x131211100b0a090803020100,
-            0x6f7220676e696c63,
-            0x5ca2e27f111a8fc8),
-        (64, 128,
-            0x1b1a1918131211100b0a090803020100,
-            0x656b696c20646e75,
-            0x44c8fc20b9dfa07a),
-        (96, 96,
-            0x0d0c0b0a0908050403020100,
-            0x2072616c6c69702065687420,
-            0x602807a462b469063d8ff082),
-        (96, 144,
-            0x1514131211100d0c0b0a0908050403020100,
-            0x74616874207473756420666f,
-            0xecad1c6c451e3f59c5db1ae9),
-        (128, 128,
-            0x0f0e0d0c0b0a09080706050403020100,
-            0x63736564207372656c6c657661727420,
-            0x49681b1e1e54fe3f65aa832af84e0bbc),
-        (128, 192,
-            0x17161514131211100f0e0d0c0b0a09080706050403020100,
-            0x206572656874206e6568772065626972,
-            0xc4ac61effcdc0d4f6c9c8d6e2597b85b),
-        (128, 256,
-            0x1f1e1d1c1b1a191817161514131211100f0e0d0c0b0a09080706050403020100,
-            0x74206e69206d6f6f6d69732061207369,
-            0x8d2b5579afc8a3a03bf72a87efe7b868)
+        (32, 64, 0x1918111009080100, 0x65656877, 0xC69BE9BB),
+        (48, 72, 0x1211100A0908020100, 0x6120676E696C, 0xDAE5AC292CAC),
+        (48, 96, 0x1A19181211100A0908020100, 0x72696320646E, 0x6E06A5ACF156),
+        (64, 96, 0x131211100B0A090803020100, 0x6F7220676E696C63, 0x5CA2E27F111A8FC8),
+        (
+            64,
+            128,
+            0x1B1A1918131211100B0A090803020100,
+            0x656B696C20646E75,
+            0x44C8FC20B9DFA07A,
+        ),
+        (
+            96,
+            96,
+            0x0D0C0B0A0908050403020100,
+            0x2072616C6C69702065687420,
+            0x602807A462B469063D8FF082,
+        ),
+        (
+            96,
+            144,
+            0x1514131211100D0C0B0A0908050403020100,
+            0x74616874207473756420666F,
+            0xECAD1C6C451E3F59C5DB1AE9,
+        ),
+        (
+            128,
+            128,
+            0x0F0E0D0C0B0A09080706050403020100,
+            0x63736564207372656C6C657661727420,
+            0x49681B1E1E54FE3F65AA832AF84E0BBC,
+        ),
+        (
+            128,
+            192,
+            0x17161514131211100F0E0D0C0B0A09080706050403020100,
+            0x206572656874206E6568772065626972,
+            0xC4AC61EFFCDC0D4F6C9C8D6E2597B85B,
+        ),
+        (
+            128,
+            256,
+            0x1F1E1D1C1B1A191817161514131211100F0E0D0C0B0A09080706050403020100,
+            0x74206E69206D6F6F6D69732061207369,
+            0x8D2B5579AFC8A3A03BF72A87EFE7B868,
+        ),
     )
 
     for bsize, ksize, key, plain, cipher in test_vectors:
@@ -362,11 +692,11 @@ if __name__ == '__main__':
         assert decrypted == plain
 
     print("All tests passed")
-    
+
     # test_key(test_str, r, bsize, ksize, delta)
-    
+
     # SIMON64/128
-    
+
     # 2023 动态聚集效应... 23 Rounds Trail
     # dl = (1 << 19)
     # dr = (1 << 13) ^ (1 << 17) ^ (1 << 21)
@@ -375,16 +705,16 @@ if __name__ == '__main__':
     # dr = (1 << 15)
     # delta_out = (dl << 32) ^ dr
     # auto_key_guess(4, 4, 23, 64, 128, delta_in, delta_out)
-    
+
     # 2017 Optimal Diff... 23 Rounds Trail
     # dl = 1
     # dr = (1 << 2) ^ (1 << 30)
     # delta_in = (dl << 32) ^ dr
     # dl = (1 << 2) ^ (1 << 6) ^ (1 << 30)
-    # dr = (1 << 4)
+    # dr = 1 << 4
     # delta_out = (dl << 32) ^ dr
     # auto_key_guess(4, 4, 23, 64, 128, delta_in, delta_out)
-    
+
     # Ours... 22 Rounds Trail
     # dl = (1 << 14) ^ (1 << 18)
     # dr = (1 << 20)
@@ -393,19 +723,27 @@ if __name__ == '__main__':
     # dr = (1 << 16)
     # delta_out = (dl << 32) ^ dr
     # auto_key_guess(4, 4, 22, 64, 128, delta_in, delta_out)
-    
+
     # Ours... 23 Rounds Trail
-    # dl = (1 << 14) ^ (1 << 18)
-    # dr = (1 << 20)
+    # dl = 1 << 2
+    # dr = (1 << 0) ^ (1 << 4)
     # delta_in = (dl << 32) ^ dr
-    # dl = (1 << 20)
-    # dr = (1 << 14) ^ (1 << 18)
+    # dl = (1 << 0) ^ (1 << 4) ^ (1 << 8)
+    # dr = 1 << 6
     # delta_out = (dl << 32) ^ dr
     # auto_key_guess(4, 4, 23, 64, 128, delta_in, delta_out)
-    
-    
+
+    # Ours... 24 Rounds Trail
+    dl = (1 << 26) ^ (1 << 30)
+    dr = 1
+    delta_in = (dl << 32) ^ dr
+    dl = (1 << 2) ^ (1 << 26) ^ (1 << 30)
+    dr = 1
+    delta_out = (dl << 32) ^ dr
+    auto_key_guess(4, 4, 23, 64, 128, delta_in, delta_out)
+
     # SIMON128/256
-    
+
     # 2017 Optimal Diff... 41 Rounds Trail
     # dl = (1 << 6)
     # dr = (1 << 0) ^ (1 << 4) ^ (1 << 8)
@@ -414,7 +752,7 @@ if __name__ == '__main__':
     # dr = (1 << 6)
     # delta_out = (dl << 64) ^ dr
     # auto_key_guess(4, 4, 41, 128, 256, delta_in, delta_out)
-    
+
     # 2023 动态聚集效应... 44 Rounds Trail
     # dl = (1 << 12)
     # dr = (1 << 6) ^ (1 << 10) ^ (1 << 14)
@@ -423,10 +761,9 @@ if __name__ == '__main__':
     # dr = (1 << 6) ^ (1 << 14) ^ (1 << 18)
     # delta_out = (dl << 64) ^ dr
     # auto_key_guess(4, 5, 44, 128, 256, delta_in, delta_out)
-    
-    
+
     # SIMON32/64
-    
+
     # 2015 Observations... 14 Rounds Trail
     # dl = 0
     # dr = (1 << 3)
@@ -445,9 +782,8 @@ if __name__ == '__main__':
     # delta_out = (dl << 16) ^ dr
     # auto_key_guess(4, 4, 14, 32, 64, delta_in, delta_out)
 
-    
     # SIMON48/96
-    
+
     # 2015 Observations... 17 Rounds Trail
     # dl = (1 << 7)
     # dr = (1 << 1) ^ (1 << 5) ^ (1 << 9)
@@ -456,16 +792,16 @@ if __name__ == '__main__':
     # dr = (1 << 7)
     # delta_out = (dl << 24) ^ dr
     # auto_key_guess(4, 4, 17, 48, 96, delta_in, delta_out)
-    
+
     # Ours... 16 Rounds Trail
-    dl = (1 << 0) ^ (1 << 4)
-    dr = (1 << 6)
-    delta_in = (dl << 24) ^ dr
-    dl = (1 << 0) ^ (1 << 4) ^ (1 << 8)
-    dr = (1 << 6)
-    delta_out = (dl << 24) ^ dr
-    auto_key_guess(4, 4, 16, 48, 96, delta_in, delta_out)
-    
+    # dl = (1 << 0) ^ (1 << 4)
+    # dr = (1 << 6)
+    # delta_in = (dl << 24) ^ dr
+    # dl = (1 << 0) ^ (1 << 4) ^ (1 << 8)
+    # dr = (1 << 6)
+    # delta_out = (dl << 24) ^ dr
+    # auto_key_guess(4, 4, 16, 48, 96, delta_in, delta_out)
+
     # Ours... 15 Rounds Trail
     # dl = (1 << 5) ^ (1 << 9)
     # dr = (1 << 11)
@@ -474,5 +810,5 @@ if __name__ == '__main__':
     # dr = (1 << 5) ^ (1 << 9)
     # delta_out = (dl << 24) ^ dr
     # auto_key_guess(4, 4, 15, 48, 96, delta_in, delta_out)
-    
+
     f.close()
