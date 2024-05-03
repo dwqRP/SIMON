@@ -40,7 +40,7 @@ void dfs(simon32 l, simon32 r, int round, int p, bool rev)
         if (num == 1000000)
         {
             ed = clock();
-            printf("Upper Part: add 1000000 trails    Time:  %.2fs\n", (double)(ed - start) / CLOCKS_PER_SEC);
+            printf("Upper Part: add 1000000 trails    Time: %.2fs\n", (double)(ed - start) / CLOCKS_PER_SEC);
             num = 0;
         }
         state st = (state){l, r};
@@ -58,7 +58,7 @@ void dfs(simon32 l, simon32 r, int round, int p, bool rev)
         if (num == 1000000)
         {
             ed = clock();
-            printf("Lower Part: add 1000000 trails    Time:  %.2fs\n", (double)(ed - start) / CLOCKS_PER_SEC);
+            printf("Lower Part: add 1000000 trails    Time: %.2fs    Prob: %f\n", (double)(ed - start) / CLOCKS_PER_SEC, prob);
             num = 0;
         }
         state st = (state){l, r};
@@ -78,6 +78,10 @@ void dfs(simon32 l, simon32 r, int round, int p, bool rev)
         }
         return;
     }
+    if (rev == 0 && p > 44)
+        return;
+    if (rev && p > 58)
+        return;
     simon32 alpha = rev ? r : l;
     int cnt = 0, vec[32];
     for (int i = 0; i < n; i++)

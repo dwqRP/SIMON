@@ -1,0 +1,9 @@
+prob = 2^{-63.016569}
+Time: 2105.89s
+
+parameters in calc32.cpp:
+ - R = 23
+ - midR = 11
+ - single round threshold = 8
+ - forward threshold = 44
+ - backward threshold = 58

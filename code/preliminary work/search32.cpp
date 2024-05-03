@@ -2,7 +2,7 @@
 #define simon32 unsigned int
 #define simon64 unsigned long long
 using namespace std;
-int n = 32, R = 24;
+int n = 32, R = 23;
 int minw = 128, win, wout;
 simon32 lin, rin;
 simon64 mx;
