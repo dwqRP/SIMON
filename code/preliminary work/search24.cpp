@@ -35,7 +35,7 @@ simon48 next(simon48 cur)
 
 inline bool bit(simon24 x, int pos) { return (x & (1 << pos)) == 0 ? 0 : 1; }
 
-inline simon24 lshift(simon24 x, int pos) { return ((x << pos) | (x >> (n - pos))) % (1 << n); }
+inline simon24 lshift(simon24 x, int shift) { return ((x << shift) | (x >> (n - shift))) % (1 << n); }
 
 void dfs(simon24 l, simon24 r, int round, int p)
 {
