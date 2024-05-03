@@ -1,0 +1,11 @@
+CLEFIA: Extended Feistel + Linear Key Schedule + Whitening Key Addtion.
+Deoxys-BC: AES-like + Linear Tweakey Schedule + Full Internal State Addtion.
+GIFT: Used.
+SKINNY: Used.
+SIMON: Feistel + Linear Key Schedule.
+XTEA: Feistel + Linear Key Schedule. (Difficult to outperform MITM attack. 29-round,SK.)
+Piccolo: Extended Feistel + Linear Key Schedule + Whitening Key Addtion.
+
+
+
+PRESENT/HIGHT/Camellia/Serpent: Non-linear Key Schedule.
