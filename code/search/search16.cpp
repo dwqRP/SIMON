@@ -4,12 +4,12 @@
 #define ctz __builtin_ctz
 #define wt __builtin_popcount
 using namespace std;
-int n = 16, R = 14;
+int n = 16, R = 15;
 int minw = 64, win, wout;
 simon16 lin, rin;
 simon32 mx;
-int B[20] = {0, 0, 2, 4, 6, 8, 12, 14, 18, 20, 25, 30, 34, 36, 38};
-int C[10] = {0, 32, 496, 4960, 35960, 201376};
+int B[20] = {0, 0, 2, 4, 6, 8, 12, 14, 18, 20, 25, 30, 34, 36, 38, 40};
+int C[10] = {0, 32, 496, 4960, 35960, 201376}; // zhs
 
 simon32 next_perm(simon32 v)
 {

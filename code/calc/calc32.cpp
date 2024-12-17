@@ -1,8 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define simon32 unsigned int
+const int gap = 1e6;
 int n = 32, R = 23, midR = 11;
-int threshold = 8;
+int single_threshold = 8;
+int forward_threshold = 45;
+int backward_threshold = 59;
 simon32 lin = 0x00000004;
 simon32 rin = 0x00000011;
 simon32 lout = 0x00000111;
@@ -37,10 +40,10 @@ void dfs(simon32 l, simon32 r, int round, int p, bool rev)
     {
         // add this internal state to hash table
         num++;
-        if (num == 1000000)
+        if (num == gap)
         {
             ed = clock();
-            printf("Upper Part: add 1000000 trails    Time: %.2fs\n", (double)(ed - start) / CLOCKS_PER_SEC);
+            printf("Upper Part: add 10^6 forward trails    Time: %.2fs\n", (double)(ed - start) / CLOCKS_PER_SEC);
             num = 0;
         }
         state st = (state){l, r};
@@ -55,10 +58,10 @@ void dfs(simon32 l, simon32 r, int round, int p, bool rev)
     {
         // check for matches and calc prob
         num++;
-        if (num == 1000000)
+        if (num == gap)
         {
             ed = clock();
-            printf("Lower Part: add 1000000 trails    Time: %.2fs    Prob: %f\n", (double)(ed - start) / CLOCKS_PER_SEC, prob);
+            printf("Lower Part: add 10^6 backward trails    Time: %.2fs    Prob: %.10f\n", (double)(ed - start) / CLOCKS_PER_SEC, prob);
             num = 0;
         }
         state st = (state){l, r};
@@ -78,9 +81,9 @@ void dfs(simon32 l, simon32 r, int round, int p, bool rev)
         }
         return;
     }
-    if (rev == 0 && p > 44)
+    if (rev == 0 && p > forward_threshold)
         return;
-    if (rev && p > 58)
+    if (rev && p > backward_threshold)
         return;
     simon32 alpha = rev ? r : l;
     int cnt = 0, vec[32];
@@ -107,7 +110,7 @@ void dfs(simon32 l, simon32 r, int round, int p, bool rev)
             vec[i] = -1;
         }
     }
-    if (cnt > threshold)
+    if (cnt > single_threshold)
         return;
     simon32 w = (1 << cnt);
     simon32 beta = (lshift(alpha, 1) & lshift(alpha, 8)) ^ lshift(alpha, 2);

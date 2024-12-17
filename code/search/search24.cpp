@@ -2,12 +2,12 @@
 #define simon24 unsigned int
 #define simon48 unsigned long long
 using namespace std;
-int n = 24, R = 17;
+int n = 24, R = 16;
 int minw = 96, win, wout;
 simon24 lin, rin;
 simon48 mx;
 int B[30] = {0, 0, 2, 4, 6, 8, 12, 14, 18, 20, 26, 30, 35, 38, 44, 46, 50, 52};
-int C[10] = {0, 48, 1128, 17296, 194580, 1712304, 12271512, 73629072};
+// int C[10] = {0, 48, 1128, 17296, 194580, 1712304, 12271512, 73629072};
 
 int ctz(simon48 x)
 {
@@ -52,6 +52,7 @@ void dfs(simon24 l, simon24 r, int round, int p)
             printf("p=2^{-%d} wt=%d\n", p, win + wout);
             puts("------------------------");
         }
+        B[R] = min(B[R], p);
         return;
     }
     simon24 alpha = l;
@@ -121,34 +122,36 @@ int main()
     for (int i = 0; i < 48; i++)
         mx |= (1ULL << i);
     // printf("%llx\n", mxv);
-    int tmpw = 0, total = 0, pr = 0;
+    int tmpw = 0;
+    // int total = 0, pr = 0;
     for (simon48 i = 1, js = 0; i <= mx; i = next(i))
     {
-        js++;
+        // js++;
         simon24 l = i >> n, r = i % (1 << n);
         if (bit(l, 0) | bit(r, 0) == 0)
             continue;
         win = wt(i);
         if (win > tmpw)
         {
-            printf("Start search delta in with hamming weight %d\n", win);
+            end = clock();
+            printf("Start search delta in with hamming weight %d    Time: %.2fs\n", win, (double)(end - start) / CLOCKS_PER_SEC);
             tmpw = win;
-            total = C[win];
-            js = 1;
-            pr = 0;
+            // total = C[win];
+            // js = 1;
+            // pr = 0;
         }
         if (win >= minw)
         {
             printf("Stop at ( %x , %x )\n", l, r);
             break;
         }
-        int rate = 100 * js / total;
-        if (rate >= pr + 5)
-        {
-            pr = rate;
-            end = clock();
-            printf("Processed: %d%    Time: %.2fs\n", rate, (double)(end - start) / CLOCKS_PER_SEC);
-        }
+        // int rate = 100 * js / total;
+        // if (rate >= pr + 5)
+        // {
+        //     pr = rate;
+        //     end = clock();
+        //     printf("Processed: %d%    Time: %.2fs\n", rate, (double)(end - start) / CLOCKS_PER_SEC);
+        // }
         lin = l;
         rin = r;
         dfs(l, r, 1, 0);

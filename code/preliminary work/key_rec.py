@@ -260,8 +260,8 @@ def gauss_elimination(
     else:
         print("rank of kin cup kout:", rank, "/", min(sz, ksize))
     # print("main_position:", mpos)
-    for row in mtx:
-        f.write(str(row) + "\n")
+    # for row in mtx:
+    #     f.write(str(row) + "\n")
 
     kres = []
     mpos = 0
@@ -304,7 +304,7 @@ def auto_key_guess(rin, rout, rd, bsize, ksize, delta_in, delta_out):
 
 
 if __name__ == "__main__":
-    f = open("log.txt", "w")
+    # f = open("log.txt", "w")
     const_seq = (
         (
             1,
@@ -734,13 +734,13 @@ if __name__ == "__main__":
     # auto_key_guess(4, 4, 23, 64, 128, delta_in, delta_out)
 
     # Ours... 24 Rounds Trail
-    dl = (1 << 26) ^ (1 << 30)
-    dr = 1
-    delta_in = (dl << 32) ^ dr
-    dl = (1 << 2) ^ (1 << 26) ^ (1 << 30)
-    dr = 1
-    delta_out = (dl << 32) ^ dr
-    auto_key_guess(4, 4, 23, 64, 128, delta_in, delta_out)
+    # dl = (1 << 26) ^ (1 << 30)
+    # dr = 1
+    # delta_in = (dl << 32) ^ dr
+    # dl = (1 << 2) ^ (1 << 26) ^ (1 << 30)
+    # dr = 1
+    # delta_out = (dl << 32) ^ dr
+    # auto_key_guess(4, 4, 23, 64, 128, delta_in, delta_out)
 
     # SIMON128/256
 
@@ -781,6 +781,15 @@ if __name__ == "__main__":
     # dr = (1 << 8)
     # delta_out = (dl << 16) ^ dr
     # auto_key_guess(4, 4, 14, 32, 64, delta_in, delta_out)
+    
+    # Ours... 15 Rounds Trail
+    dl = (1 << 14)
+    dr = 1
+    delta_in = (dl << 16) ^ dr
+    dl = (1 << 8)
+    dr = (1 << 6)
+    delta_out = (dl << 16) ^ dr
+    auto_key_guess(4, 4, 14, 32, 64, delta_in, delta_out)
 
     # SIMON48/96
 
@@ -811,4 +820,4 @@ if __name__ == "__main__":
     # delta_out = (dl << 24) ^ dr
     # auto_key_guess(4, 4, 15, 48, 96, delta_in, delta_out)
 
-    f.close()
+    # f.close()
